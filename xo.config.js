@@ -2,6 +2,6 @@ module.exports = {
   prettier: true,
   space: true,
   rules: {
-    "import/extentions": "always",
+    "n/file-extension-in-import": ["error", "always"],
   }
 };
