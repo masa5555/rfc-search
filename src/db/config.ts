@@ -12,6 +12,4 @@ const connection = connect({
   password: result.parsed?.DATABASE_PASSWORD ?? '',
 });
 
-console.log({connection});
-
 export const db = drizzle(connection, {schema});
