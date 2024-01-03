@@ -1,4 +1,4 @@
-name: use pnpm
+name: pnpm lint
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  test_and_build_and_deploy:
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
