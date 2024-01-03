@@ -7,7 +7,11 @@ const result = configDotenv({path: './.env.local'});
 
 // Create the connection
 const connection = connect({
-  ...result.parsed,
+  host: result.parsed?.DATABASE_HOST ?? '',
+  username: result.parsed?.DATABASE_USERNAME ?? '',
+  password: result.parsed?.DATABASE_PASSWORD ?? '',
 });
+
+console.log({connection});
 
 export const db = drizzle(connection, {schema});

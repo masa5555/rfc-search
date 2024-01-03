@@ -1,0 +1,1 @@
+ALTER TABLE `rfc` MODIFY COLUMN `page_count` smallint;

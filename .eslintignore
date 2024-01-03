@@ -2,3 +2,5 @@ next.config.js
 postcss.config.js
 xo.config.js
 drizzle.config.ts
+src/db/data/*
+*.json
