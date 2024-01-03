@@ -27,7 +27,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-8">
       <h1 className="text-4xl font-bold">RFCs</h1>
       <ul className="flex flex-col">
         {rfcList.map((rfc) => (
@@ -53,9 +53,9 @@ const RfcItem = ({rfc}: {rfc: RFC}) => {
   return (
     <li key={rfc.id} className="flex flex-col h-24">
       <Link
-        href={`https://www.ietf.org/rfc/rfc${rfc.id}.txt`}
+        href={`https://www.ietf.org/rfc/${rfc.docId.toLowerCase()}.txt`}
         target="_blank"
-        className="text-2xl font-bold"
+        className="text-xl font-bold text-black hover:text-blue-500 line-clamp-2"
       >
         {rfc.title}
       </Link>
