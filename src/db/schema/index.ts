@@ -41,13 +41,13 @@ export const rfcContentTable = mysqlTable('rfc_content', {
 
 export const keywordCategoryTable = mysqlTable('keyword_category', {
   id: serial('id').primaryKey(),
-  name: varchar('name', {length: 255}).notNull(),
+  name: varchar('name', {length: 255}).notNull().unique(),
   createdAt: timestamp('created_at').defaultNow(),
 });
 
 export const keywordTable = mysqlTable('keyword', {
   id: serial('id').primaryKey(),
-  name: varchar('name', {length: 255}).notNull(),
+  name: varchar('name', {length: 255}).notNull().unique(),
   categoryId: int('category_id'), // Nullable
   createAt: timestamp('created_at').defaultNow(),
 });
