@@ -6,6 +6,9 @@ import {
   year,
   tinyint,
   smallint,
+  int,
+  mediumtext,
+  index,
 } from 'drizzle-orm/mysql-core';
 
 export const healthCheckTable = mysqlTable('health_check', {
@@ -26,4 +29,32 @@ export const rfcTable = mysqlTable('rfc', {
   pubYear: year('pub_year'),
   pubMonth: tinyint('pub_month'), // 1 ~ 12
   createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const rfcContentTable = mysqlTable('rfc_content', {
+  id: serial('id').primaryKey(),
+  docId: varchar('doc_id', {length: 10}).notNull(),
+  content: mediumtext('content').notNull(), // Full text index (drizzleでは指定できないので手動で設定)
+  createdAt: timestamp('created_at').defaultNow(),
+  modifiedAt: timestamp('modified_at').onUpdateNow(),
+});
+
+export const keywordCategoryTable = mysqlTable('keyword_category', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', {length: 255}).notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
+});
+
+export const keywordTable = mysqlTable('keyword', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', {length: 255}).notNull(),
+  categoryId: int('category_id'), // Nullable
+  createAt: timestamp('created_at').defaultNow(),
+});
+
+export const rfcKeywordRelationTable = mysqlTable('rfc_keyword_relation', {
+  id: serial('id').primaryKey(),
+  rfcId: int('rfc_id').notNull(),
+  keywordId: int('keyword_id').notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
 });
